@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Token;
 
-use Ticaje\Connector\Interfaces\Provider\Token\TokenProviderInterface as ParentInterface;
+use Ticaje\Connector\Interfaces\Provider\Token\TokenProviderInterface as MiddlewareTokenProviderInterface;
 
 /**
  * Interface TokenProviderInterface
  * @package Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Token
  */
-interface TokenProviderInterface extends ParentInterface
+interface TokenProviderInterface extends MiddlewareTokenProviderInterface
 {
 }

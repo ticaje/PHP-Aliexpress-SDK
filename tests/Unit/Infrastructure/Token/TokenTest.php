@@ -15,6 +15,7 @@ use Ticaje\Connector\Gateway\Client\Rest;
 use Ticaje\Connector\Interfaces\Provider\Token\TokenProviderInterface;
 
 use Ticaje\AeSdk\Infrastructure\Provider\Token\Token;
+use Ticaje\Connector\Gateway\Provider\Token\Token as TokenMiddleware;
 
 /**
  * Class TokenTest
@@ -33,7 +34,7 @@ class TokenTest extends ParentClass
             ->setMethods(['generateClient'])
             ->getMock();
 
-        $this->tokenizer = $this->getMockBuilder(Token::class)
+        $middleware = $this->getMockBuilder(TokenMiddleware::class)
             ->setConstructorArgs(
                 [
                     'connector' => $connector,
@@ -43,7 +44,10 @@ class TokenTest extends ParentClass
 
                 ]
             )
-            ->setMethods(['getAccessToken', 'setParams'])
+            ->getMock();
+
+        $this->tokenizer = $this->getMockBuilder(Token::class)
+            ->setConstructorArgs(['middleWare' => $middleware])
             ->getMock();
     }
 

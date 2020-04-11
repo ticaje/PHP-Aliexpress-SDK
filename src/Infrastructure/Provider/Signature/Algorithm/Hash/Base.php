@@ -25,8 +25,7 @@ abstract class Base implements SignatureAlgorithmInterface
      */
     public function __construct(
         string $algorithm
-    )
-    {
+    ) {
         $this->algorithm = $algorithm;
     }
 

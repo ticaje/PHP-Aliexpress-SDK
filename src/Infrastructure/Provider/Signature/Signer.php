@@ -27,8 +27,7 @@ class Signer implements SignerInterface
     public function __construct(
         SignatureBuilderInterface $builder,
         SignatureAlgorithmInterface $algorithm
-    )
-    {
+    ) {
         $this->builder = $builder;
         $this->algorithm = $algorithm;
     }
