@@ -11,11 +11,11 @@ namespace Ticaje\AeSdk\Test\Unit\Infrastructure\Authenticator;
 
 use Ticaje\AeSdk\Test\Unit\BaseTest as ParentClass;
 
-use Ticaje\Connector\Gateway\Client\Rest;
-use Ticaje\Connector\Interfaces\Provider\Token\TokenProviderInterface;
+use Ticaje\AConnector\Gateway\Client\Rest;
+use Ticaje\AConnector\Interfaces\Provider\Token\TokenProviderInterface;
+use Ticaje\AConnector\Gateway\Provider\Token\Token as TokenMiddleware;
 
 use Ticaje\AeSdk\Infrastructure\Provider\Token\Token;
-use Ticaje\Connector\Gateway\Provider\Token\Token as TokenMiddleware;
 
 /**
  * Class TokenTest

@@ -11,7 +11,8 @@ namespace Ticaje\AeSdk\Test\Unit\Infrastructure\Signature;
 
 use ArgumentCountError;
 
-use Ticaje\AeSdk\Base\Dto;
+use Ticaje\Contract\Base\Dto;
+
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignerInterface;
 use Ticaje\AeSdk\Infrastructure\Provider\Signature\Algorithm\Hash\Hash;
 use Ticaje\AeSdk\Infrastructure\Provider\Signature\Builder;
@@ -57,7 +58,8 @@ class SignerTest extends ParentClass
 
     public function testSignWithWrongParameter()
     {
-        $this->expectExceptionMessage('must be an instance of Ticaje\AeSdk\Infrastructure\Interfaces\DtoInterface');
+        $pattern = '/must be an instance of .*DtoInterface/';
+        $this->expectExceptionMessageRegExp($pattern);
         $this->assertNotEmpty($this->signer->sign([1, 2, 3]), 'Expect error if no parameters passed along');
     }
 

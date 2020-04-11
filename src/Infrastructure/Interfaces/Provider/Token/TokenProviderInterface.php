@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Token;
 
-use Ticaje\Connector\Interfaces\Provider\Token\TokenProviderInterface as MiddlewareTokenProviderInterface;
+use Ticaje\AConnector\Interfaces\Provider\Token\TokenProviderInterface as MiddlewareTokenProviderInterface;
 
 /**
  * Interface TokenProviderInterface

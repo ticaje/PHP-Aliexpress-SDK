@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature;
 
-use Ticaje\AeSdk\Infrastructure\Interfaces\DtoInterface;
+use Ticaje\Contract\Patterns\Interfaces\Dto\DtoInterface;
 
 interface SignerInterface
 {

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Provider\Signature;
 
-use Ticaje\AeSdk\Infrastructure\Interfaces\DtoInterface;
+use Ticaje\Contract\Patterns\Interfaces\Dto\DtoInterface;
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureAlgorithmInterface;
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureBuilderInterface;
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignerInterface;

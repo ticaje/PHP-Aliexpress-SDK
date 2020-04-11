@@ -14,7 +14,8 @@
     "type": "library",
     "require": {
         "php": "^7.1",
-        "ticaje/m2-connector": "^1.0"
+        "ticaje/design-by-contract": "^1.0",
+        "ticaje/agnostic-connector": "^1.0"
     },
     "version": "1.0.0",
     "autoload": {
