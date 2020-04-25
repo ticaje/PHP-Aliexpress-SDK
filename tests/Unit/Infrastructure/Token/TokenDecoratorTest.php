@@ -59,40 +59,53 @@ class TokenDecoratorTest extends ParentClass
 
     public function testFailedResponse()
     {
-        $response = new Response();
-        $decorator = new TokenDecorator();
+        ($mockAeResponse = function () use (&$responseEncoded) {
+            $responseEncoded = json_encode(["error_msg" => "Error Papi"]);
+        })();
 
-        $closureKeys  = function () use ($response) {
-            $content = json_decode(json_encode(["error_msg" => "Error Papi"]), false);
-            $response->setContent($content);
-            $this->assertObjectHasAttribute('error_msg', $content, 'Check that key "error_msg" exists when returning bad token response');
-        };
-        $closureKeys();
+        ($mockSdkResponseDecorator = function () use (&$responseEncoded, &$response) {
+            $response = new Response();
+            $response->setContent($responseEncoded);
+        })();
 
-        $closureLogic = function () use ($response, $decorator) {
+        /** This method makes sure that a success response must have error_msg attribute */
+        ($assertBusinessPolicyPreconditions = function () use ($responseEncoded) {
+            $decoded = json_decode($responseEncoded);
+            $this->assertObjectHasAttribute('error_msg', $decoded, 'Check that key "error_msg" exists when returning bad token response');
+        })();
+
+        /** This method check response decorator result has all proper attributes to be used by consumers */
+        ($assertProcessResponse = function () use ($response) {
+            $decorator = new TokenDecorator();
             $tokenDecorator = $decorator->process($response);
-            $this->assertContains('There was a problem', $tokenDecorator->getMessage());
+            $this->assertRegExp('/There was a problem .* Error Papi/', $tokenDecorator->getMessage());
             $this->assertFalse($tokenDecorator->getSuccess(), 'Assert responder returns false when bad response from SDK');
-        };
-        $closureLogic();
+        })();
     }
 
     public function testSuccessResponse()
     {
-        $response = new Response();
-        $decorator = new TokenDecorator();
+        ($mockAeResponse = function () use (&$responseEncoded, &$token, &$tokenExpirationDate) {
+            $token = '3464656546456456';
+            $tokenExpirationDate = date("Y-m-d", strtotime("+1 months"));
+            $responseEncoded = json_encode(["access_token" => $token, "expire_time" => $tokenExpirationDate]);
+        })();
 
-        $token = '3464656546456456';
-        $tokenExpirationDate = date("Y-m-d", strtotime("+1 months"));
-        $closureKeys  = function () use ($response, $token, $tokenExpirationDate) {
-            $content = json_decode(json_encode(["access_token" => $token, "expire_time" => $tokenExpirationDate]), false);
-            $response->setContent($content);
-            $this->assertObjectHasAttribute('access_token', $content, 'Check that key "access_token" must exist when returning success token response');
-            $this->assertObjectHasAttribute('expire_time', $content, 'Check that key "expire_time" must exist when returning success token response');
-        };
-        $closureKeys();
+        ($mockSdkResponseDecorator = function () use (&$responseEncoded, &$response) {
+            $response = new Response();
+            $response->setContent($responseEncoded);
+        })();
 
-        $closureLogic = function () use ($response, $decorator, $token, $tokenExpirationDate) {
+        /** This method makes sure that a success response must have access_token and expire_time attributes */
+        ($assertBusinessPolicyPreconditions = function () use ($responseEncoded) {
+            $decoded = json_decode($responseEncoded);
+            $this->assertObjectHasAttribute('access_token', $decoded, 'Check that key "access_token" must exist when returning success token response');
+            $this->assertObjectHasAttribute('expire_time', $decoded, 'Check that key "expire_time" must exist when returning success token response');
+        })();
+
+        /** This method check response decorator result has all proper attributes to be used by consumers */
+        ($assertProcessResponse = function () use ($response, $token, $tokenExpirationDate) {
+            $decorator = new TokenDecorator();
             $tokenDecorator = $decorator->process($response);
             $this->assertContains('Token generated successfully', $tokenDecorator->getMessage());
             $this->assertTrue($tokenDecorator->getSuccess(), 'Assert responder returns true when success response from SDK');
@@ -100,7 +113,6 @@ class TokenDecoratorTest extends ParentClass
             $this->assertNotEmpty($tokenDecorator->getAccessTokenValidity(), 'Assert responder returns access token validity when success response from SDK');
             $this->assertEquals($tokenDecorator->getAccessToken(), $token);
             $this->assertEquals($tokenDecorator->getAccessTokenValidity(), $tokenExpirationDate);
-        };
-        $closureLogic();
+        })();
     }
 }

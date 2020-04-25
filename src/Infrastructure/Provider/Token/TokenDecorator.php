@@ -36,7 +36,7 @@ class TokenDecorator implements TokenResponderInterface
      */
     public function process(ContractResponseInterface $response): TokenResponderInterface
     {
-        $content = $response->getContent();
+        $content = json_decode($response->getContent());
         // This is actually the business policy behind this class
         isset($content->access_token) ? $this->launchSuccess($content) : $this->launchFailed($content);
         return $this;
