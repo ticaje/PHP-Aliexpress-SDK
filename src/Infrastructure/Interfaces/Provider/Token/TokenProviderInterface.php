@@ -17,4 +17,5 @@ use Ticaje\AConnector\Interfaces\Provider\Token\TokenProviderInterface as Middle
  */
 interface TokenProviderInterface extends MiddlewareTokenProviderInterface
 {
+    public function getAccessToken(): TokenResponderInterface;
 }

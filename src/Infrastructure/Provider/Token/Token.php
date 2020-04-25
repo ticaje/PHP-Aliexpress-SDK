@@ -12,6 +12,7 @@ namespace Ticaje\AeSdk\Infrastructure\Provider\Token;
 use Ticaje\AConnector\Interfaces\Provider\Token\TokenProviderInterface as MiddlewareTokenProviderInterface;
 
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Token\TokenProviderInterface;
+use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Token\TokenResponderInterface;
 
 /**
  * Class Token
@@ -27,18 +28,23 @@ class Token implements TokenProviderInterface
     /** @var MiddlewareTokenProviderInterface $middleWare */
     private $middleWare;
 
+    private $responder;
+
     /**
      * Token constructor.
      * @param MiddlewareTokenProviderInterface $middleWare
+     * @param TokenResponderInterface $tokenResponder
      * We're gonna use anymore a framework coupled dependency as so far, Ticaje\Connector is a Magento based extension
      * this library is relying on right now, this is inconsistent with agnostic approach.
      * From now on Ticaje\Connector is gonna be a framework independent library, so the glue amongst libraries will be defined
      * in the light of a DC container or similar artifact.
      */
     public function __construct(
-        MiddlewareTokenProviderInterface $middleWare
+        MiddlewareTokenProviderInterface $middleWare,
+        TokenResponderInterface $tokenResponder
     ) {
         $this->middleWare = $middleWare;
+        $this->responder = $tokenResponder;
     }
 
     /**
@@ -53,9 +59,10 @@ class Token implements TokenProviderInterface
     /**
      * @return mixed
      */
-    public function getAccessToken()
+    public function getAccessToken(): TokenResponderInterface
     {
-        return $this->middleWare->getAccessToken();
+        $response = $this->responder->process($this->middleWare->getAccessToken());
+        return $response;
     }
 
     /**
@@ -72,7 +79,7 @@ class Token implements TokenProviderInterface
             'client_id' => $params['client_id'],
             'client_secret' => $params['client_secret'],
             'sp' => 'ae',
-            'redirect_url' => $params['callback_url']
+            'redirect_url' => $params['redirect_url']
         ];
         return $result;
     }
