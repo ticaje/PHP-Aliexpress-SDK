@@ -9,9 +9,8 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Provider\Signature;
 
-use Ticaje\Contract\Patterns\Interfaces\Dto\DtoInterface;
-use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureAlgorithmInterface;
-use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureBuilderInterface;
+use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureInterface;
+use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Request\RequestDtoInterface as DtoInterface;
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignerInterface;
 
 /**
@@ -20,36 +19,32 @@ use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignerInterface;
  */
 class Signer implements SignerInterface
 {
-    private $builder;
-
-    private $algorithm;
+    private $algorithmer;
 
     public function __construct(
-        SignatureBuilderInterface $builder,
-        SignatureAlgorithmInterface $algorithm
+        SignatureInterface $algorithmer
     ) {
-        $this->builder = $builder;
-        $this->algorithm = $algorithm;
+        $this->algorithmer = $algorithmer;
     }
 
     /**
      * @inheritDoc
      */
-    public function sign(DtoInterface $dto): string
+    public function sign(string $toSign, DtoInterface $dto): string
     {
-        $result = $this->algorithm->sign($this->perform($dto), $dto->getSecret());
+        $secret = $dto->getSecret();
+        $result = strtoupper($this->algorithmer->sign($this->perform($toSign, $secret)));
         return $result;
     }
 
     /**
-     * @param $dto
+     * @param string $sorted
+     * @param string $secret
      * @return string
      * This method accomplishes business policy
      */
-    private function perform($dto)
+    private function perform(string $sorted, string $secret)
     {
-        $sorted = $this->builder->build($dto);
-        $secret = $dto->getSecret();
         $data = $this->policy($secret, $sorted);
         return $data;
     }

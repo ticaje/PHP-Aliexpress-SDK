@@ -9,31 +9,20 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Provider\Signature\Algorithm\Hash;
 
-use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SimpleAlgorithmInterface;
+use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\Algorithm\Md5AlgorithmInterface;
 
 /**
  * Class Hash
  * @package Ticaje\AeSdk\Infrastructure\Provider\Signature\Algorithm\Hash
  */
-class Hash implements SimpleAlgorithmInterface
+class Md5 implements Md5AlgorithmInterface
 {
-    protected $algorithm;
-
-    /**
-     * Hash constructor.
-     * @param string $algorithm
-     */
-    public function __construct(
-        string $algorithm = 'md5'
-    ) {
-        $this->algorithm = $algorithm;
-    }
-
     /**
      * @inheritDoc
+     * A little I.S.P issue since no needed secret for this algorithm
      */
     public function sign(string $message): string
     {
-        return hash($this->algorithm, $message);
+        return md5($message);
     }
 }

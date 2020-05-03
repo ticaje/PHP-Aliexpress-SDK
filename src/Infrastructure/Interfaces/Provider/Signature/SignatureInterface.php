@@ -9,12 +9,10 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature;
 
-use Ticaje\Contract\Patterns\Interfaces\Dto\DtoInterface;
-
 /**
- * Interface DtoInterface
- * @package Ticaje\AeSdk\Infrastructure\Interfaces
+ * Interface SignatureInterface
+ * @package Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature
  */
-interface SystemDtoInterface extends DtoInterface
+interface SignatureInterface
 {
 }

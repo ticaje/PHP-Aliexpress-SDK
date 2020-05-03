@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Provider\Signature\Algorithm;
 
-use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureAlgorithmInterface;
+use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\ComplexAlgorithmInterface;
 
 /**
  * Class Sodium
@@ -17,7 +17,7 @@ use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureAlgorithm
  * This class provides sodium implementation to signing message, could be abstracted into
  * an agnostic base class for reusing by other modules
  */
-class Sodium implements SignatureAlgorithmInterface
+class Sodium implements ComplexAlgorithmInterface
 {
     /**
      * @inheritDoc

@@ -9,13 +9,14 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature;
 
-use Ticaje\Contract\Patterns\Interfaces\Dto\DtoInterface;
+use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Request\RequestDtoInterface as DtoInterface;
 
 interface SignerInterface
 {
     /**
      * @param DtoInterface $dto
+     * @param string $toSign
      * @return string
      */
-    public function sign(DtoInterface $dto): string;
+    public function sign(string $toSign, DtoInterface $dto): string;
 }

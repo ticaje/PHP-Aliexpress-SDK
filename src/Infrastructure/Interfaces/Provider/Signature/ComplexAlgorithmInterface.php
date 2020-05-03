@@ -10,10 +10,10 @@ declare(strict_types=1);
 namespace Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature;
 
 /**
- * Interface SignatureAlgorithmInterface
+ * Interface ComplexAlgorithmInterface
  * @package Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature
  */
-interface SignatureAlgorithmInterface
+interface ComplexAlgorithmInterface extends SignatureInterface
 {
     /**
      * @param string $message
