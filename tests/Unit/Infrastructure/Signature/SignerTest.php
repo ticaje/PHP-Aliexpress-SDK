@@ -11,11 +11,10 @@ namespace Ticaje\AeSdk\Test\Unit\Infrastructure\Signature;
 
 use ArgumentCountError;
 
-use Ticaje\Contract\Base\Dto;
+use Ticaje\AeSdk\Infrastructure\Provider\Request\Dto;
 
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignerInterface;
 use Ticaje\AeSdk\Infrastructure\Provider\Signature\Algorithm\Hash\Hash;
-use Ticaje\AeSdk\Infrastructure\Provider\Signature\Builder;
 use Ticaje\AeSdk\Test\Unit\BaseTest as ParentClass;
 
 use Ticaje\AeSdk\Infrastructure\Provider\Signature\Signer;
@@ -30,17 +29,13 @@ class SignerTest extends ParentClass
 
     public function setUp()
     {
-        $builder = $this->getMockBuilder(Builder::class)
-            ->setMethods(['build'])
-            ->getMock();
-
         $algorithm = $this->getMockBuilder(Hash::class)
             ->setConstructorArgs(['algorithm' => 'md5'])
             ->setMethods(['sign'])
             ->getMock();
 
         $this->signer = $this->getMockBuilder(Signer::class)
-            ->setConstructorArgs(['builder' => $builder, 'algorithm' => $algorithm])
+            ->setConstructorArgs(['algorithmer' => $algorithm])
             ->setMethods(['sign'])
             ->getMock();
     }
@@ -58,7 +53,7 @@ class SignerTest extends ParentClass
 
     public function testSignWithWrongParameter()
     {
-        $pattern = '/must be an instance of .*DtoInterface/';
+        $pattern = '/must be of the type string/';
         $this->expectExceptionMessageRegExp($pattern);
         $this->assertNotEmpty($this->signer->sign([1, 2, 3]), 'Expect error if no parameters passed along');
     }
@@ -74,7 +69,7 @@ class SignerTest extends ParentClass
 
         $this->signer->method('sign')
             ->willReturn($expectedValue);
-        $signature = $this->signer->sign($dto);
+        $signature = $this->signer->sign('234', $dto);
 
         $this->assertEquals($expectedValue, $signature);
         $this->assertNotEquals($unExpectedValue, $signature);

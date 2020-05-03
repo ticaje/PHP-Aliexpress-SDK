@@ -11,7 +11,7 @@ namespace Ticaje\AeSdk\Test\Unit\Infrastructure\Signature;
 
 use ArgumentCountError;
 
-use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SignatureAlgorithmInterface;
+use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Signature\SimpleAlgorithmInterface;
 use Ticaje\AeSdk\Infrastructure\Provider\Signature\Algorithm\Hash\Hash;
 use Ticaje\AeSdk\Test\Unit\BaseTest as ParentClass;
 
@@ -33,7 +33,7 @@ class HashTest extends ParentClass
 
     public function testProperInterface()
     {
-        $this->assertInstanceOf(SignatureAlgorithmInterface::class, $this->algorithm);
+        $this->assertInstanceOf(SimpleAlgorithmInterface::class, $this->algorithm);
     }
 
     public function testSignWithNoParameters()
