@@ -43,7 +43,7 @@ class FreightTemplateListResponder implements ApiResponderInterface, WorkerInter
             ->setSuccess(0)
             ->setContent(null)
             ->setCode($response->code)
-            ->setMessage($response->code)
+            ->setMessage($response->msg)
         ;
     }
 

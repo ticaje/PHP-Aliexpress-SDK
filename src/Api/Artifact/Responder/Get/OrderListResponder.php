@@ -43,7 +43,7 @@ class OrderListResponder implements ApiResponderInterface, WorkerInterface
             ->setSuccess(0)
             ->setContent(null)
             ->setCode($response->code)
-            ->setMessage($response->code)
+            ->setMessage($response->msg)
         ;
     }
 
