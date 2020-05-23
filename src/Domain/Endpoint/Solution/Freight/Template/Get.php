@@ -25,6 +25,10 @@ class Get implements ServiceRequestInterface, WorkerInterface
 
     private $apiMethodName = 'aliexpress.freight.redefining.listfreighttemplate';
 
+    /**
+     * @inheritDoc
+     * Empty request since contains no params according to AE policies
+     */
     public function getRequest(): array
     {
         return [];
