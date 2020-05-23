@@ -29,11 +29,11 @@ trait ApiMediator
      */
     protected function launch(DtoInterface $generalRequest, array $serviceRequest, $method)
     {
-        $serviceRequestInstance = $this->pool->get(self::REQUEST_SERVICE_MAPPER[$method]);
-        $serviceRequestInstance->setData($serviceRequest);
+        $requester = $this->pool->get(self::REQUEST_SERVICE_MAPPER[$method]);
+        $requester->setData($serviceRequest);
         /** @var ApiResponderInterface $responder */
         $responder = $this->pool->get(self::RESPONSE_SERVICE_MAPPER[$method]);
-        $params = $this->build($serviceRequestInstance, $generalRequest);
+        $params = $this->build($requester, $generalRequest);
         $response = $this->client->request('GET', "router/rest?{$params}", $generalRequest->getHeaders(), []);
         return $responder->process($response);
     }

@@ -32,6 +32,12 @@ abstract class Base
 
     protected $pool;
 
+    /**
+     * Base constructor.
+     * @param ClientInterface $client
+     * @param RequesterInterface $requester
+     * @param PoolInterface $pool
+     */
     public function __construct(
         ClientInterface $client,
         RequesterInterface $requester,
