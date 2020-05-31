@@ -52,8 +52,18 @@ abstract class BaseTest extends ParentClass
 
     public function testProcessMethodCalled()
     {
-        $response = new Response();
         $mockedInstance = $this->getMockBuilder($this->class)->getMock();
+        $response = new Response();
+        $response->setContent(
+            '{
+                "error_response":{
+                    "sub_msg":"非法参数",
+                    "code":50,
+                    "sub_code":"isv.invalid-parameter",
+                    "msg":"Remote service error"
+                }
+            }'
+        );
 
         ($assertProcessMethodInstanceOf = function () use ($response, $mockedInstance) {
             $mockedInstance->method('process')->willReturn($mockedInstance);
@@ -61,15 +71,36 @@ abstract class BaseTest extends ParentClass
         })();
 
         ($assertProcessMethodWithFailedResponse = function () use ($response, $mockedInstance) {
-            $response->setContent(
-                '{"error_response":{"sub_msg":"非法参数","code":50,"sub_code":"isv.invalid-parameter","msg":"Remote service error"}}'
-            );
             $mockedInstance->method('process')->willReturn($mockedInstance);
             $this->assertInstanceOf(ApiResponderInterface::class, $mockedInstance->process($response), 'Assert it passes proper interface when invoking process method');
             $this->instance->process($response);
             $this->assertEquals(0, $this->instance->getSuccess(), 'Assert success is 0');
             $this->assertEquals(50, $this->instance->getCode(), 'Assert code is 50');
-            $this->assertEquals('Remote service error', $this->instance->getMessage(), 'Assert message is the right one');
+            $this->assertEquals(null, $this->instance->getContent(), 'Assert no content when error');
+            $this->assertContains('Remote service error', $this->instance->getMessage(), 'Assert message is the right one');
         })();
+    }
+
+    /**
+     * @param $callable
+     * @param $responderContainer
+     */
+    public function launchSuccessResponse(callable $callable, $responderContainer)
+    {
+        ($initializer = function () use (&$response, &$mockedInstance, $responderContainer) {
+            $response = new Response();
+            $mockedInstance = $this->getMockBuilder($this->class)->getMock();
+            $mockedInstance->method('process')->willReturn($mockedInstance);
+            $response->setContent($responderContainer->getContent());
+            $this->instance->process($response);
+        })();
+
+        ($assertStandards = function () use ($response, $mockedInstance) {
+            $this->assertEquals(1, $this->instance->getSuccess(), 'Assert success is 1');
+            $this->assertEquals(200, $this->instance->getCode(), 'Assert code is 200');
+            $this->assertContains('successfully', $this->instance->getMessage(), 'Assert message is the right one');
+        })();
+
+        $callable();
     }
 }

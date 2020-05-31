@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Ticaje\AeSdk\Test\Unit\Domain\Endpoint;
 
 use Ticaje\AeSdk\Test\Unit\BaseTest as ParentClass;
+
 use Ticaje\AeSdk\Domain\Interfaces\Request\ServiceRequestInterface;
 
 /**
@@ -26,7 +27,7 @@ abstract class BaseTest extends ParentClass
 
     protected $apiMethodName;
 
-    protected $params;
+    protected $params = [];
 
     protected $endPointer;
 
@@ -43,8 +44,7 @@ abstract class BaseTest extends ParentClass
     public function testGetRequestReturnsEmptyArray()
     {
         $request = $this->instance->getRequest();
-        $this->paramKey() ? $this->assertNotEmpty($request, 'Expects not empty array returned') : $this->assertEmpty($request, 'Expects empty array returned');
-        $this->paramKey() ? $this->assertArrayHasKey($this->paramKey, $request, 'Expects proper key') : $this->assertTrue(true);
+        $this->assertInternalType('array', $request, 'Expects proper key');
     }
 
     public function testGetApiMethodName()
