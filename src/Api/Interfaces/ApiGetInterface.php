@@ -31,4 +31,11 @@ interface ApiGetInterface extends MediatorInterface
      * @return DecoratorInterface
      */
     public function get(DtoInterface $generalRequest, array $serviceRequest): DecoratorInterface;
+
+    /**
+     * @param DtoInterface $generalRequest
+     * @param array $serviceRequest
+     * @return DecoratorInterface
+     */
+    public function info(DtoInterface $generalRequest, array $serviceRequest): DecoratorInterface;
 }

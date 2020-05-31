@@ -35,4 +35,13 @@ trait ApiGetMediator
     {
         return $this->launch($generalRequest, $serviceRequest, __FUNCTION__);
     }
+
+    /**
+     * @inheritDoc
+     * Fetch {resource} details from AE API.
+     */
+    public function info(DtoInterface $generalRequest, array $serviceRequest): DecoratorInterface
+    {
+        return $this->launch($generalRequest, $serviceRequest, __FUNCTION__);
+    }
 }

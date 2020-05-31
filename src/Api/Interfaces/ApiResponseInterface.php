@@ -14,7 +14,7 @@ use Ticaje\Contract\Patterns\Interfaces\Decorator\Responder\ResponseInterface as
 
 /**
  * Interface ApiResponseInterface
- * @package Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Token
+ * @package Ticaje\AeSdk\Api\Interfaces
  */
 interface ApiResponseInterface
 {

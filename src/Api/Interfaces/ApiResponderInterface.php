@@ -14,7 +14,7 @@ use Ticaje\Contract\Patterns\Interfaces\Decorator\Responder\ResponseInterface as
 
 /**
  * Interface ApiResponderInterface
- * @package Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Token
+ * @package Ticaje\AeSdk\Api\Interfaces
  * It turns out that our SDK is a higher level module compared to lower level module Contract library
  * which it depends upon, so it is responsible for interpreting the response coming out from the connector middleware
  * so it handles it back to consumers modules.

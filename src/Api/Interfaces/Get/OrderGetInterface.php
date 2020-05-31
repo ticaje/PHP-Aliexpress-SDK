@@ -13,9 +13,11 @@ use Ticaje\AeSdk\Api\Interfaces\ApiGetInterface;
 
 use Ticaje\AeSdk\Api\Artifact\Responder\Get\OrderInfoResponder;
 use Ticaje\AeSdk\Api\Artifact\Responder\Get\OrderListResponder;
+use Ticaje\AeSdk\Api\Artifact\Responder\Get\OrderReceiptInfoResponder;
 
 use Ticaje\AeSdk\Domain\Endpoint\Solution\Order\Get as BusinessGetOrdersRequest;
 use Ticaje\AeSdk\Domain\Endpoint\Solution\Order\Info as BusinessGetOrderInfoRequest;
+use Ticaje\AeSdk\Domain\Endpoint\Solution\Order\ReceiptInfo as BusinessGetOrderReceiptInfoRequest;
 
 /**
  * Interface OrderGetInterface
@@ -25,11 +27,13 @@ interface OrderGetInterface extends ApiGetInterface
 {
     const REQUEST_SERVICE_MAPPER = [
         'list' => BusinessGetOrdersRequest::class,
-        'get' => BusinessGetOrderInfoRequest::class
+        'get' => BusinessGetOrderInfoRequest::class,
+        'info' => BusinessGetOrderReceiptInfoRequest::class
     ];
 
     const RESPONSE_SERVICE_MAPPER = [
         'list' => OrderListResponder::class,
-        'get' => OrderInfoResponder::class
+        'get' => OrderInfoResponder::class,
+        'info' => OrderReceiptInfoResponder::class
     ];
 }
