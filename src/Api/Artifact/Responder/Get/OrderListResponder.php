@@ -37,21 +37,11 @@ class OrderListResponder implements ApiResponderInterface, WorkerInterface
         return $this;
     }
 
-    protected function error(\stdClass $response)
-    {
-        $this
-            ->setSuccess(0)
-            ->setContent(null)
-            ->setCode($response->code)
-            ->setMessage($response->msg)
-        ;
-    }
-
     protected function success(\stdClass $response)
     {
         $data = $response->result;
         $itemsCount = $data->total_count;
-        $message = $itemsCount ? 'OK' : 'No orders found with such criteria';
+        $message = $itemsCount ? "{$itemsCount} orders fetched successfully" : 'No orders found with such criteria';
         $this
             ->setSuccess(1)
             ->setCount($itemsCount)

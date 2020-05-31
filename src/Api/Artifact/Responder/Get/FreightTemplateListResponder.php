@@ -37,25 +37,16 @@ class FreightTemplateListResponder implements ApiResponderInterface, WorkerInter
         return $this;
     }
 
-    protected function error(\stdClass $response)
-    {
-        $this
-            ->setSuccess(0)
-            ->setContent(null)
-            ->setCode($response->code)
-            ->setMessage($response->msg)
-        ;
-    }
-
     protected function success(\stdClass $response)
     {
         $data = $response->aeop_freight_template_d_t_o_list;
+        $itemsCount = count($data->aeopfreighttemplatedtolist);
+        $message = $itemsCount ? "{$itemsCount} shipping templates fetched successfully" : 'No templates found with such criteria';
         $this
             ->setSuccess(1)
-            ->setCount(count($data->aeopfreighttemplatedtolist))
+            ->setCount($itemsCount)
             ->setTemplates($data->aeopfreighttemplatedtolist)
             ->setCode(200)
-            ->setMessage('Ok')
-        ;
+            ->setMessage($message);
     }
 }

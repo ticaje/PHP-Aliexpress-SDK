@@ -39,23 +39,14 @@ class OrderInfoResponder implements ApiResponderInterface, WorkerInterface
         return $this;
     }
 
-    protected function error(\stdClass $response)
-    {
-        $this
-            ->setSuccess(0)
-            ->setContent(null)
-            ->setCode($response->code)
-            ->setMessage($response->msg)
-        ;
-    }
-
     protected function success(\stdClass $response)
     {
         $data = $response->result->data;
+        $message = 'Order info fetched successfully';
         $this
             ->setSuccess(1)
             ->setCode(200)
-            ->setMessage('Ok')
+            ->setMessage($message)
             ->setBuyerInfo($data->buyer_info)
             ->setProductsInformation($data->child_order_list->global_aeop_tp_child_order_dto)
             ->setStatus($data->order_status)

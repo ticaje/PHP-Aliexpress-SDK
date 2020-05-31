@@ -37,16 +37,6 @@ class PromiseTemplateListResponder implements ApiResponderInterface, WorkerInter
         return $this;
     }
 
-    protected function error(\stdClass $response)
-    {
-        $this
-            ->setSuccess(0)
-            ->setContent(null)
-            ->setCode($response->error_code)
-            ->setMessage($response->error_message)
-        ;
-    }
-
     // {"aliexpress_postproduct_redefining_querypromisetemplatebyid_response":{"result":{"template_list":{"templatelist":[{"id":0,"name":"Service Template for New Sellers"}]}},"request_id":"6q1kgx1ihhw7"}}
     protected function success(\stdClass $response)
     {

@@ -35,23 +35,14 @@ class MerchantProfileResponder implements ApiResponderInterface, WorkerInterface
         return $this;
     }
 
-    protected function error(\stdClass $response)
-    {
-        $this
-            ->setSuccess(0)
-            ->setContent(null)
-            ->setCode($response->code)
-            ->setMessage("{$response->msg} : {$response->sub_code}")
-        ;
-    }
-
     protected function success(\stdClass $response)
     {
+        $data = $response;
+        $message = 'Merchant Info fetched successfully';
         $this
             ->setSuccess(1)
-            ->setProfileInfo($response)
+            ->setProfileInfo($data)
             ->setCode(200)
-            ->setMessage('Ok')
-        ;
+            ->setMessage($message);
     }
 }
