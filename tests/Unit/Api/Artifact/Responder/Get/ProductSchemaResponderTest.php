@@ -25,7 +25,7 @@ class ProductSchemaResponderTest extends ParentClass
      */
     public function testSuccessResponse()
     {
-        $callable = $assertOrderInfo = function () {
+        $callable = function () {
             $this->assertNotEmpty($this->instance->getSchema(), 'Assert product schema info not empty');
         };
 

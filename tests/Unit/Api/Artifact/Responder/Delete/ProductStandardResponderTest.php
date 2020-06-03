@@ -25,7 +25,7 @@ class ProductStandardResponderTest extends ParentClass
      */
     public function testSuccessResponse()
     {
-        $callable = $assertOrderInfo = function () {
+        $callable = function () {
             $this->assertNull($this->instance->getProductIds(), 'Assert returns no product IDs since it\'s delete related use case');
         };
 

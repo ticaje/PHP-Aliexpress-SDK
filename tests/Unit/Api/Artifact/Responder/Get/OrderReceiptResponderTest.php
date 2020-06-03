@@ -25,7 +25,7 @@ class OrderReceiptResponderTest extends ParentClass
      */
     public function testSuccessResponse()
     {
-        $callable = $assertOrderInfo = function () {
+        $callable = function () {
             $this->assertNotEmpty($this->instance->getOrderInfo(), 'Assert buyer info not empty');
         };
 
