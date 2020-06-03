@@ -10,8 +10,9 @@ declare(strict_types=1);
 namespace Ticaje\AeSdk\Api\Interfaces\Post;
 
 use Ticaje\AeSdk\Api\Interfaces\ApiPostInterface;
-use Ticaje\AeSdk\Api\Artifact\Responder\Post\OrderPostBySchemaResponder as BusinessResponder;
-use Ticaje\AeSdk\Domain\Endpoint\Solution\Product\Post\BySchema as BusinessRequester;
+use Ticaje\AeSdk\Api\Artifact\Responder\Post\ProductPostStandardResponder as BusinessResponder;
+
+use Ticaje\AeSdk\Domain\Endpoint\Solution\Product\Post\Normal as BusinessRequester;
 
 /**
  * Interface ProductPostInterface

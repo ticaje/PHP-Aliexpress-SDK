@@ -9,16 +9,27 @@ declare(strict_types=1);
 
 namespace Ticaje\AeSdk\Api\Mediator\Post;
 
+use Ticaje\AeSdk\Api\Mediator\Base as ParentClass;
+
+use Ticaje\AeSdk\Api\Traits\Mediator\ApiComplexMediator;
 use Ticaje\AeSdk\Api\Traits\Mediator\ApiPostMediator;
 use Ticaje\AeSdk\Api\Traits\Mediator\ApiMediator;
-use Ticaje\AeSdk\Api\Mediator\Base as ParentClass;
+
 use Ticaje\AeSdk\Api\Interfaces\Post\ProductPostInterface;
 
 /**
- * Class Order
- * @package Ticaje\AeSdk\Api\Mediator\Get
+ * Class Product
+ * @package Ticaje\AeSdk\Api\Mediator\Post
  */
 class Product extends ParentClass implements ProductPostInterface
 {
-    use ApiMediator, ApiPostMediator;
+    use ApiMediator, ApiPostMediator, ApiComplexMediator;
+
+    /**
+     * @inheritDoc
+     */
+    public function getParamsWrapper(): string
+    {
+        return $this->getRequestWrapper('post');
+    }
 }

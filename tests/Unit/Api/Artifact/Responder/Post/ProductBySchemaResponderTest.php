@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Ticaje\AeSdk\Test\Unit\Api\Artifact\Responder\Post;
 
 use Ticaje\AeSdk\Test\Unit\Api\Artifact\Responder\BaseTest as ParentClass;
-use Ticaje\AeSdk\Api\Artifact\Responder\Post\OrderPostBySchemaResponder;
+use Ticaje\AeSdk\Api\Artifact\Responder\Post\ProductPostBySchemaResponder;
 
 /**
  * Class ProductBySchemaResponderTest
@@ -18,7 +18,7 @@ use Ticaje\AeSdk\Api\Artifact\Responder\Post\OrderPostBySchemaResponder;
  */
 class ProductBySchemaResponderTest extends ParentClass
 {
-    protected $class = OrderPostBySchemaResponder::class;
+    protected $class = ProductPostBySchemaResponder::class;
 
     /**
      * Specific responder test.
