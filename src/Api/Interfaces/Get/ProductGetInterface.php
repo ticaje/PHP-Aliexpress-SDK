@@ -11,10 +11,14 @@ namespace Ticaje\AeSdk\Api\Interfaces\Get;
 
 use Ticaje\AeSdk\Api\Interfaces\ApiGetInterface;
 
-use Ticaje\AeSdk\Api\Artifact\Responder\Get\ProductSchemaInfoResponder as BusinessResponder;
-use Ticaje\AeSdk\Domain\Endpoint\Solution\Product\Schema\Get as BusinessRequester;
 use Ticaje\AeSdk\Infrastructure\Interfaces\Provider\Request\RequestDtoInterface as DtoInterface;
 use Ticaje\Contract\Patterns\Interfaces\Decorator\DecoratorInterface;
+
+use Ticaje\AeSdk\Api\Artifact\Responder\Get\ProductSchemaInfoResponder as SchemaBusinessResponder;
+use Ticaje\AeSdk\Domain\Endpoint\Solution\Product\Schema\Get as SchemaBusinessRequester;
+
+use Ticaje\AeSdk\Domain\Endpoint\Solution\Product\Get\Groups as GroupsBusinessRequester;
+use Ticaje\AeSdk\Api\Artifact\Responder\Get\ProductGroupsResponder as GroupsBusinessResponder;
 
 /**
  * Interface ProductGetInterface
@@ -23,11 +27,13 @@ use Ticaje\Contract\Patterns\Interfaces\Decorator\DecoratorInterface;
 interface ProductGetInterface extends ApiGetInterface
 {
     const REQUEST_SERVICE_MAPPER = [
-        'schema' => BusinessRequester::class
+        'schema' => SchemaBusinessRequester::class,
+        'groups' => GroupsBusinessRequester::class
     ];
 
     const RESPONSE_SERVICE_MAPPER = [
-        'schema' => BusinessResponder::class
+        'schema' => SchemaBusinessResponder::class,
+        'groups' => GroupsBusinessResponder::class
     ];
 
     /**
@@ -35,4 +41,10 @@ interface ProductGetInterface extends ApiGetInterface
      * Fetch {resource} details from AE API.
      */
     public function schema(DtoInterface $generalRequest, array $serviceRequest): DecoratorInterface;
+
+    /**
+     * @inheritDoc
+     * Fetch {resource} details from AE API.
+     */
+    public function groups(DtoInterface $generalRequest, array $serviceRequest): DecoratorInterface;
 }

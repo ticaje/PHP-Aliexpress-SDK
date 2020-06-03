@@ -33,4 +33,13 @@ class Product extends ParentClass implements ProductGetInterface
     {
         return $this->launch($generalRequest, $serviceRequest, __FUNCTION__);
     }
+
+    /**
+     * @inheritDoc
+     * Fetch {resource} details from AE API.
+     */
+    public function groups(DtoInterface $generalRequest, array $serviceRequest): DecoratorInterface
+    {
+        return $this->launch($generalRequest, $serviceRequest, __FUNCTION__);
+    }
 }
