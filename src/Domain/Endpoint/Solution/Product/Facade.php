@@ -36,6 +36,6 @@ trait Facade
 
     public function getParamsWrapperKey(): string
     {
-        return 'params';
+        return self::PARAMS_WRAPPER_KEY;
     }
 }

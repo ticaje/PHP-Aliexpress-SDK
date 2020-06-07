@@ -32,7 +32,7 @@ class Signer implements SignerInterface
      */
     public function sign(string $toSign, DtoInterface $dto): string
     {
-        $secret = $dto->getSecret();
+        $secret = $dto->getAppSecret();
         $result = strtoupper($this->algorithmer->sign($this->perform($toSign, $secret)));
         return $result;
     }
