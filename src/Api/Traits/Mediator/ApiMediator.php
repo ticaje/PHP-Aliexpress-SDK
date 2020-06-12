@@ -43,7 +43,7 @@ trait ApiMediator
      */
     private function instantiateRequester($method)
     {
-        $instance = $this->pool->get(self::REQUEST_SERVICE_MAPPER[$method]);
+        $instance = $this->pool->get(static::REQUEST_SERVICE_MAPPER[$method]);
         return $instance;
     }
 
@@ -54,7 +54,7 @@ trait ApiMediator
     private function instantiateResponder($method)
     {
         /** @var ApiResponderInterface $instance */
-        $instance = $this->pool->get(self::RESPONSE_SERVICE_MAPPER[$method]);
+        $instance = $this->pool->get(static::RESPONSE_SERVICE_MAPPER[$method]);
         return $instance;
     }
 }

@@ -30,12 +30,12 @@ trait Facade
     private function sanitize()
     {
         $built = $this->build();
-        $clean = $built[self::PARAMS_WRAPPER_KEY] ?? null;
+        $clean = $built[static::PARAMS_WRAPPER_KEY] ?? null;
         return $clean;
     }
 
     public function getParamsWrapperKey(): string
     {
-        return self::PARAMS_WRAPPER_KEY;
+        return static::PARAMS_WRAPPER_KEY;
     }
 }

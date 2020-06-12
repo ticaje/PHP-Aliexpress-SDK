@@ -24,7 +24,7 @@ trait ApiComplexMediator
     private function getRequestWrapper($method)
     {
         /** @var DomainProductPostPolicy $requester */
-        $requester = $this->pool->get(self::REQUEST_SERVICE_MAPPER[$method]);
+        $requester = $this->pool->get(static::REQUEST_SERVICE_MAPPER[$method]);
         $result = $requester->getParamsWrapperKey();
         $this->pool->free($requester); // Free worker so being available now
         return $result;
