@@ -2,7 +2,7 @@
 ## PHP SDK to AE platform
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/ae-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/ae-sdk)
-[![Quality Score](https://img.shields.io/scrutinizer/g/ae-sdk.svg?style=flat-square)](https://scrutinizer-ci.com/g/ae-sdk)
+[![Quality Score](https://img.shields.io/scrutinizer/g/ticaje/ae-sdk.svg?style=flat-square)](https://scrutinizer-ci.com/g/ticaje/ae-sdk)
 [![Total Downloads](https://img.shields.io/packagist/dt/ticaje/ae-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/ae-sdk)
 
 ## Preface
