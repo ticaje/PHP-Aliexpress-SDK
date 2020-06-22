@@ -12,6 +12,12 @@
     ],
     "description": "PHP SDK to AE platform",
     "type": "library",
+    "keywords": [
+        "Aliexpress PHP SDK",
+        "REST SDK",
+        "Affiliate Products"
+    ],
+
     "require": {
         "php": "^7.1",
         "ticaje/design-by-contract": "^1.0",
