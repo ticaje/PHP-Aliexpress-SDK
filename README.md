@@ -1,9 +1,9 @@
 # AliExpress PHP Sdk
 ## PHP SDK to AE platform
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/ae-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/ae-sdk)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/aliexpress-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/aliexpress-sdk)
 [![Quality Score](https://img.shields.io/scrutinizer/g/ticaje/ae-sdk.svg?style=flat-square)](https://scrutinizer-ci.com/g/ticaje/ae-sdk)
-[![Total Downloads](https://img.shields.io/packagist/dt/ticaje/ae-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/ae-sdk)
+[![Total Downloads](https://img.shields.io/packagist/dt/ticaje/aliexpress-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/aliexpress-sdk)
 
 ## Preface
 
@@ -15,7 +15,7 @@ in a simple way. It implements modern PHP standards in order to keep it up with 
 You can install this package using composer(the only way i recommend)
 
 ```bash
-composer require ticaje/ae-sdk
+composer require ticaje/aliexpress-sdk
 ```
 
 ## Features
