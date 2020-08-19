@@ -11,9 +11,11 @@ namespace Ticaje\AeSdk\Api\Mediator\Delete;
 
 use Ticaje\AeSdk\Api\Mediator\Base as ParentClass;
 
-use Ticaje\AeSdk\Api\Traits\Mediator\ApiMediator;
-
 use Ticaje\AeSdk\Api\Interfaces\Post\ProductPostInterface;
+
+use Ticaje\AeSdk\Api\Traits\Mediator\ApiComplexMediator;
+use Ticaje\AeSdk\Api\Traits\Mediator\ApiMediator;
+use Ticaje\AeSdk\Api\Traits\Mediator\ApiPostMediator;
 
 /**
  * Class Product
