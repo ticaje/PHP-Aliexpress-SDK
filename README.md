@@ -1,9 +1,11 @@
 # AliExpress PHP Sdk
 ## PHP SDK to AE platform
 
+[![GPLv3 License](https://img.shields.io/badge/license-GPLv3-marble.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/aliexpress-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/aliexpress-sdk)
 [![Quality Score](https://img.shields.io/scrutinizer/g/ticaje/ae-sdk.svg?style=flat-square)](https://scrutinizer-ci.com/g/ticaje/ae-sdk)
 [![Total Downloads](https://img.shields.io/packagist/dt/ticaje/aliexpress-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/aliexpress-sdk)
+[![Blog](https://img.shields.io/badge/Blog-hectorbarrientos.com-magenta)](https://hectorbarrientos.com)
 
 ## Preface
 
@@ -20,7 +22,7 @@ composer require ticaje/aliexpress-sdk
 
 ## Features
 
-I will bbe posting documentation as the project grows older.
+I will be posting documentation as the project grows older.
 
 ## Credits
 
