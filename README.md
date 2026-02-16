@@ -5,7 +5,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/aliexpress-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/aliexpress-sdk)
 [![Quality Score](https://img.shields.io/scrutinizer/g/ticaje/ae-sdk.svg?style=flat-square)](https://scrutinizer-ci.com/g/ticaje/ae-sdk)
 [![Total Downloads](https://img.shields.io/packagist/dt/ticaje/aliexpress-sdk.svg?style=flat-square)](https://packagist.org/packages/ticaje/aliexpress-sdk)
-[![Blog](https://img.shields.io/badge/Blog-hectorbarrientos.com-magenta)](https://hectorbarrientos.com)
+[![Author](https://img.shields.io/badge/HBLateral.com-%2302113a?style=labelColor=lightgrey)](https://hblateral.com)
 
 ## Preface
 
